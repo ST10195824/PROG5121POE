@@ -11,7 +11,7 @@ public class PROG5121POE {
     public static void main(String[] args) {
         LogIn test = new LogIn();
         
-        test.PasswordValidation("@a6Qdwa");
+        //test.checkPasswordComplexity("@a6Qdwa");
     }
     
 }

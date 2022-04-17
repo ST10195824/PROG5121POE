@@ -3,6 +3,6 @@
 package prog5121poe;
 
 
-public class User {
+public class RunTime {
     
 }
