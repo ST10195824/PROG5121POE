@@ -2,8 +2,7 @@
 // ST10195824
 package prog5121poe;
 
-import javax.swing.*;
-
+//import javax.swing.*;
 // http://tutorials.jenkov.com/java-regex/matcher.html
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -64,8 +63,13 @@ public class LogIn
     public boolean checkUsername()
     {
         // check to make sure the username is less than 5 characters and that the username contains an underscore
-        return this.UserName.length() >= 5 && this.UserName.contains("_");
+        if (this.UserName.length() <= 5 && this.UserName.contains("_"))
+        {
+            return true;
+        }
+        return false;
     }
+    
 
     public boolean checkPasswordComplexity()
     {
@@ -80,6 +84,8 @@ public class LogIn
         Matcher checkForNumber = Number.matcher(this.Password);
 
         // check that password is longer than 7 characters has a capital letter, a number and a special character
+        
+        
         return this.Password.length() >= 8 && checkForSpecialCharacter.find() && checkForCapitalLetter.find() && checkForNumber.find();
 
     }
@@ -92,19 +98,21 @@ public class LogIn
             //JOptionPane.showMessageDialog(null, "Username and Password successfully captured");
             return "Username and Password successfully captured";
         } else
-        {
 
+        {
             if (!checkPasswordComplexity())
             {
-                
-                // add correct message
-                return "Password must be at least 8 characters and contain at least 1: digit, special character, capital letter, please try agin ";  
-            } else
-            {
-                return " Username is not correctly formattedplease ensure that your username contains an underscore and is no more than 5 Characters in length";
-            }
 
+                // add correct message
+                return "Password must be at least 8 characters and contain at least 1: digit, special character, capital letter, please try agin ";
+            }
         }
+
+        if (!checkUsername())
+        {
+            return " Username is not correctly formattedplease ensure that your username contains an underscore and is no more than 5 Characters in length";
+        }
+        return null;
     }
 
 }

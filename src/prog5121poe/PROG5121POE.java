@@ -9,9 +9,10 @@ public class PROG5121POE {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        LogIn test = new LogIn();
         
-        //test.checkPasswordComplexity("@a6Qdwa");
+        RunTime worker = new RunTime();
+        worker.subMenu(worker.mainMenu());
+        System.out.println("end");
     }
     
 }
