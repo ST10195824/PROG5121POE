@@ -70,6 +70,14 @@ public class LogIn
         return false;
     }
     
+    public boolean logUserIn(String userNameArg, String userPassArg)
+    {
+        if (userNameArg.equals(this.getUserName()) && userPassArg.equals(this.getPassword()))
+        {
+            return true;
+        }
+        return false;
+    }
 
     public boolean checkPasswordComplexity()
     {

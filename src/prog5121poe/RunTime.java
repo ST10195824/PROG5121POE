@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class RunTime
 {
- 
+
     public int mainMenu()
     {
         int chosenMenu = 0;
@@ -57,24 +57,24 @@ public class RunTime
             JTextField nameField = new JTextField("name");
             JTextField lastNameField = new JTextField("lastname");
             String message = "Please enter your name, surname, username and password.";
-            
-             result = JOptionPane.showOptionDialog(frame, new Object[]
-                {
-                    message, nameField, lastNameField, userField, passField
-                }, "Login", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-                if (result == JOptionPane.OK_OPTION)
-                {
-                    registeration.setFirstName(nameField.getText());
-                    registeration.setLastName(lastNameField.getText());
-                    registeration.setUserName(userField.getText());
-                    registeration.setPassword(passField.getText()); 
-                }
-                
-            while (registeration.registerUser() != "Username and Password successfully captured" )
+
+            result = JOptionPane.showOptionDialog(frame, new Object[]
+            {
+                message, nameField, lastNameField, userField, passField
+            }, "Login", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+            if (result == JOptionPane.OK_OPTION)
+            {
+                registeration.setFirstName(nameField.getText());
+                registeration.setLastName(lastNameField.getText());
+                registeration.setUserName(userField.getText());
+                registeration.setPassword(passField.getText());
+            }
+
+            while (registeration.registerUser() != "Username and Password successfully captured")
             {
                 JOptionPane.showMessageDialog(null, registeration.registerUser());
-               
-                 result = JOptionPane.showOptionDialog(frame, new Object[]
+
+                result = JOptionPane.showOptionDialog(frame, new Object[]
                 {
                     message, nameField, lastNameField, userField, passField
                 }, "Login", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
@@ -83,15 +83,37 @@ public class RunTime
                     registeration.setFirstName(nameField.getText());
                     registeration.setLastName(lastNameField.getText());
                     registeration.setUserName(userField.getText());
-                    registeration.setPassword(passField.getText()); 
+                    registeration.setPassword(passField.getText());
                 }
-               
+
             }
             JOptionPane.showMessageDialog(null, registeration.registerUser());
             return true;
+        } else if (chosenSubMenu == 2)
+        {
+            int result;
+            JFrame frame = new JFrame("Registeration");
+            JTextField logUserField = new JTextField("user");
+            JTextField logPassField = new JTextField("psasword");
+            String message = "Please enter your name, surname, username and password.";
+
+            result = JOptionPane.showOptionDialog(frame, new Object[]
+            {
+                message, logUserField, logPassField
+            }, "Login", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+            if (result == JOptionPane.OK_OPTION)
+            {
+                if (registeration.logUserIn(logUserField.getText(), logUserField.getText()))
+                {
+                    JOptionPane.showMessageDialog(null, "Welcome " + registeration.getFirstName() + " " + registeration.getLastName() + "it is great tosee you again.");
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, "Username or password incorrect, please try again");
+                }
+            }
         }
         return false;
-        
+
     }
 
 }
