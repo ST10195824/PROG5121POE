@@ -7,30 +7,36 @@ import javax.swing.*;
 public class RunTime
 {
 
+    
+    LogIn registeration = new LogIn();
+    
     public int mainMenu()
     {
         int chosenMenu = 0;
-        boolean run = true;
+        boolean run = true;  
         String userInput;
         while (run)
         {
+            // the options displayed to the user
             userInput = JOptionPane.showInputDialog(null,
                     "Please enter a selection: \n"
                     + "\t1. Register user\n"
                     + "\t2. Login User\n"
                     + "\t3. Quit\n",
                     "Login or Register", JOptionPane.QUESTION_MESSAGE);
-
+            // auto quits the menu if the user doent enter a value
             if ((userInput == null) || (userInput.isEmpty()))
             {
                 chosenMenu = 3;
             } else
             {
+                //assigns the menu selected by the user to the methods output
                 chosenMenu = Integer.parseInt(userInput);
             }
 
             if ((chosenMenu < 1) || (chosenMenu > 3))
             {
+                //validates that the user entered a real option if they didnt the menu is shown again
                 JOptionPane.showMessageDialog(null,
                         "Invalid input",
                         "Error detected",
@@ -40,22 +46,25 @@ public class RunTime
                 run = false;
             }
         }
-
+        //outputs the value corresponding to the menu chosen by the user
         return chosenMenu;
     }
 
-    public boolean subMenu(int chosenSubMenu)
+    public void subMenu(int chosenSubMenu)
     {
-        LogIn registeration = new LogIn();
-
+       // only 1 LogIn object is used currently as there is only be one user required for the scope of task 1.
+       
+        
+         // registration menu 
         if (chosenSubMenu == 1)
         {
+            // creates a custom Dialog to accsept 
             int result;
             JFrame frame = new JFrame("Registeration");
-            JTextField userField = new JTextField("user");
-            JTextField passField = new JTextField("psasword");
-            JTextField nameField = new JTextField("name");
-            JTextField lastNameField = new JTextField("lastname");
+            JTextField userField = new JTextField("Enter a username");
+            JTextField passField = new JTextField("Enter a password");
+            JTextField nameField = new JTextField("Enter a name");
+            JTextField lastNameField = new JTextField("Enter a surname");
             String message = "Please enter your name, surname, username and password.";
 
             result = JOptionPane.showOptionDialog(frame, new Object[]
@@ -70,7 +79,7 @@ public class RunTime
                 registeration.setPassword(passField.getText());
             }
 
-            while (registeration.registerUser() != "Username and Password successfully captured")
+            while (!registeration.registerUser().equals("Username and Password successfully captured"))
             {
                 JOptionPane.showMessageDialog(null, registeration.registerUser());
 
@@ -85,34 +94,28 @@ public class RunTime
                     registeration.setUserName(userField.getText());
                     registeration.setPassword(passField.getText());
                 }
-
             }
             JOptionPane.showMessageDialog(null, registeration.registerUser());
-            return true;
-        } else if (chosenSubMenu == 2)
+        } else
         {
-            int result;
-            JFrame frame = new JFrame("Registeration");
-            JTextField logUserField = new JTextField("user");
-            JTextField logPassField = new JTextField("psasword");
-            String message = "Please enter your name, surname, username and password.";
+            if (chosenSubMenu == 2)
+            {
+                int result;
+                JFrame frame = new JFrame("Login");
+                JTextField logUserField = new JTextField("Enter your username");
+                JTextField logPassField = new JTextField("Enter your password");
+                String message = "Please enter your username and password.";
 
-            result = JOptionPane.showOptionDialog(frame, new Object[]
-            {
-                message, logUserField, logPassField
-            }, "Login", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-            if (result == JOptionPane.OK_OPTION)
-            {
-                if (registeration.logUserIn(logUserField.getText(), logUserField.getText()))
+                result = JOptionPane.showOptionDialog(frame, new Object[]
                 {
-                    JOptionPane.showMessageDialog(null, "Welcome " + registeration.getFirstName() + " " + registeration.getLastName() + "it is great tosee you again.");
-                } else
+                    message, logUserField, logPassField
+                }, "Login", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if (result == JOptionPane.OK_OPTION)
                 {
-                    JOptionPane.showMessageDialog(null, "Username or password incorrect, please try again");
+                    JOptionPane.showMessageDialog(null, registeration.returnLoginStatus(logUserField.getText(), logPassField.getText()));
                 }
             }
         }
-        return false;
 
     }
 
