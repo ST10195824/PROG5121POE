@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 
 public class LogIn
 {
-// creating feilds for LogIn class
+// creating fields for LogIn class
     private String UserName;
     private String FirstName;
     private String LastName;

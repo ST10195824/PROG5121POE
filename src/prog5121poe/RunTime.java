@@ -82,7 +82,7 @@ public class RunTime
             while (!registeration.registerUser().equals("Username and Password successfully captured"))
             {
                 JOptionPane.showMessageDialog(null, registeration.registerUser());
-
+           
                 result = JOptionPane.showOptionDialog(frame, new Object[]
                 {
                     message, nameField, lastNameField, userField, passField
