@@ -7,13 +7,12 @@ import javax.swing.*;
 public class RunTime
 {
 
-    
     LogIn registeration = new LogIn();
-    
+
     public int mainMenu()
     {
         int chosenMenu = 0;
-        boolean run = true;  
+        boolean run = true;
         String userInput;
         while (run)
         {
@@ -52,10 +51,9 @@ public class RunTime
 
     public void subMenu(int chosenSubMenu)
     {
-       // only 1 LogIn object is used currently as there is only be one user required for the scope of task 1.
-       
-        
-         // registration menu 
+        // only 1 LogIn object is used currently as there is only be one user required for the scope of task 1.
+
+        // registration menu 
         if (chosenSubMenu == 1)
         {
             // creates a custom Dialog to accsept 
@@ -82,7 +80,7 @@ public class RunTime
             while (!registeration.registerUser().equals("Username and Password successfully captured"))
             {
                 JOptionPane.showMessageDialog(null, registeration.registerUser());
-           
+
                 result = JOptionPane.showOptionDialog(frame, new Object[]
                 {
                     message, nameField, lastNameField, userField, passField
@@ -113,10 +111,20 @@ public class RunTime
                 if (result == JOptionPane.OK_OPTION)
                 {
                     JOptionPane.showMessageDialog(null, registeration.returnLoginStatus(logUserField.getText(), logPassField.getText()));
+                    if (registeration.logUserIn(logUserField.getText(), logPassField.getText()))
+                    {
+                        EasyKanban();
+                    }
                 }
             }
         }
+    }
 
+    public void EasyKanban()
+    {
+        {
+            JOptionPane.showMessageDialog(null, "Welcome to EasyKanban");
+        }
     }
 
 }
