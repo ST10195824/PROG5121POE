@@ -113,18 +113,60 @@ public class RunTime
                     JOptionPane.showMessageDialog(null, registeration.returnLoginStatus(logUserField.getText(), logPassField.getText()));
                     if (registeration.logUserIn(logUserField.getText(), logPassField.getText()))
                     {
-                        EasyKanban();
+                        EasyKanbanMenu();
                     }
                 }
             }
         }
     }
 
-    public void EasyKanban()
+    public int EasyKanbanMenu()
     {
+        
+        JOptionPane.showMessageDialog(null, "Welcome to EasyKanban");
+        
+        
+        int chosenMenu = 0;
+        boolean run = true;
+        String userInput;
+        while (run)
         {
-            JOptionPane.showMessageDialog(null, "Welcome to EasyKanban");
+            // the options displayed to the user
+            userInput = JOptionPane.showInputDialog(null,
+                    "Please enter a selection: \n"
+                    + "\t1. Register user\n"
+                    + "\t2. Login User\n"
+                    + "\t3. Quit\n",
+                    "Login or Register", JOptionPane.QUESTION_MESSAGE);
+            // auto quits the menu if the user doent enter a value
+            if ((userInput == null) || (userInput.isEmpty()))
+            {
+                chosenMenu = 3;
+            } else
+            {
+                //assigns the menu selected by the user to the methods output
+                chosenMenu = Integer.parseInt(userInput);
+            }
+
+            if ((chosenMenu < 1) || (chosenMenu > 3))
+            {
+                //validates that the user entered a real option if they didnt the menu is shown again
+                JOptionPane.showMessageDialog(null,
+                        "Invalid input",
+                        "Error detected",
+                        JOptionPane.ERROR_MESSAGE);
+            } else
+            {
+                run = false;
+            }
         }
+        //outputs the value corresponding to the menu chosen by the user
+        return chosenMenu;
+        
     }
+
+    
+        
+    
 
 }
