@@ -134,8 +134,8 @@ public class RunTime
             // the options displayed to the user
             userInput = JOptionPane.showInputDialog(null,
                     "Please enter a selection: \n"
-                    + "\t1. Register user\n"
-                    + "\t2. Login User\n"
+                    + "\t1. Add tasks\n"
+                    + "\t2. Show report\n"
                     + "\t3. Quit\n",
                     "Login or Register", JOptionPane.QUESTION_MESSAGE);
             // auto quits the menu if the user doent enter a value
@@ -166,7 +166,19 @@ public class RunTime
     }
 
     
-        
+        public void EasyKanbanSubMenu(int menuChoice)
+        {
+            if (menuChoice == 1) 
+            {
+             
+            }
+            else
+            {
+             JOptionPane.showMessageDialog(null, "Coming Soon");   
+            }
+            
+            
+        }
     
 
 }
