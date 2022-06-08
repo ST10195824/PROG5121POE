@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+// Michael French
+// ST10195824
 package prog5121poe;
 //way to increment the taskNumber automatically based on the number of existing constructor methods.
 // this is best used for thread saftey when doing multithreading but it works for this purpose too.
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class Task
 {
-
     private static final AtomicInteger aggregator = new AtomicInteger();
     private static double total = 0;
     //fields for task object
@@ -26,7 +22,7 @@ public final class Task
     {
         taskNumber = aggregator.incrementAndGet() -1;
     }
-
+// parameterised constructor is used in testing
     public Task(String taskName, String taskDescript, String devDetails, double taskDuration, String taskStatus)
     {
         this.taskName = taskName;
@@ -37,7 +33,7 @@ public final class Task
         this.taskNumber = aggregator.incrementAndGet() -1;
         createtaskID();
     }
-
+//------------BACIC_SETTERS_AND_GETTERS-------------//
     public String getTaskStatus()
     {
         return taskStatus;
@@ -47,8 +43,6 @@ public final class Task
     {
         this.taskStatus = taskStatus;
     }
-
-   
 
     public String getTaskName()
     {
@@ -69,9 +63,31 @@ public final class Task
     {
         return taskDescription;
     }
+    
+     public String getDevDetails()
+    {
+        return devDetails;
+    }
 
+    public void setDevDetails(String devDetails)
+    {
+
+        this.devDetails = devDetails;
+    }
+
+    public double getTaskDuration()
+    {
+        return taskDuration;
+    }
+    
+    public String getID()
+    {
+        return ID;
+    }
+//--------------ACTIVE_METHODS-------------------------------//
     public String setTaskDescription(String taskDescription)
     {
+        // validates that the description is no more than 50 characters and returns a message based on that.
         if (taskDescription.length() <= 50)
         {
             this.taskDescription = taskDescription;
@@ -82,25 +98,9 @@ public final class Task
         }
     }
 
-    public String getDevDetails()
-    {
-        return devDetails;
-    }
-
-    public void setDevDetails(String devDetails)
-    {
-
-        this.devDetails = devDetails;
-
-    }
-
-    public double getTaskDuration()
-    {
-        return taskDuration;
-    }
-
     public boolean setTaskDuration(String taskDuration)
     {
+        //trys to parse the input to a double and catches the error if text is input instead of number values
         try
         {
             this.taskDuration = Double.parseDouble(taskDuration);
@@ -111,21 +111,11 @@ public final class Task
         return true;
     }
 
-    public String getID()
-    {
-        return ID;
-    }
 
     public boolean checkTaskDescription(String taskDesc)
     {
-        if (taskDesc.length() <= 50)
-        {
-            this.taskDescription = taskDesc;
-            return true;
-        } else
-        {
-            return false;
-        }
+        // validates that the description is no more than 50 characters
+        return taskDesc.length() <= 50;
     }
     
     public void createtaskID()

@@ -25,7 +25,7 @@ public class PROG5121POE
                 {
                     boolean userLogin = worker.loginMenu();
                     if (userLogin)
-                    {
+                    {   //application menu then using a method to switch to each otion if that menu
                         selectedEasyKanbanMenu = worker.EasyKanbanMenu();
                         worker.menuSwitcher(selectedEasyKanbanMenu);
                     }
