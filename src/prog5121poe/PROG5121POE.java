@@ -12,6 +12,7 @@ public class PROG5121POE
     {
         //instantiates the menu system
         RunTime worker = new RunTime();
+<<<<<<< Updated upstream
         boolean run = true;
         while (run)
         {
@@ -24,6 +25,11 @@ public class PROG5121POE
             worker.subMenu(chosenSubMenu);
         }
 
+=======
+        worker.subMenu(worker.mainMenu());
+
+        System.exit(0);
+>>>>>>> Stashed changes
     }
 
 }
