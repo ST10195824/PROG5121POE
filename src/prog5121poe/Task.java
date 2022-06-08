@@ -118,7 +118,7 @@ public final class Task
 
     public boolean checkTaskDescription(String taskDesc)
     {
-        if (taskDescription.length() <= 50)
+        if (taskDesc.length() <= 50)
         {
             this.taskDescription = taskDesc;
             return true;
@@ -142,8 +142,8 @@ public final class Task
                 + "taskDescription: " + taskDescription + "\n"
                 + "devDetails: " + devDetails + "\n"
                 + "taskDuration: " + taskDuration + "\n"
-                + ", ID: " + ID + "\n"
-                + ", taskStatus: " + taskStatus;
+                + "ID: " + ID + "\n"
+                + "taskStatus: " + taskStatus;
     }
 
     public static double returnTotalHours(double duration)

@@ -6,9 +6,9 @@ import javax.swing.*;
 
 public class RunTime
 {
-
+    
     LogIn registeration = new LogIn();
-
+    
     public int entranceHallMenu()
     {
         int chosenMenu = 0;
@@ -32,7 +32,7 @@ public class RunTime
                 //assigns the menu selected by the user to the methods output
                 chosenMenu = Integer.parseInt(userInput);
             }
-
+            
             if ((chosenMenu < 1) || (chosenMenu > 3))
             {
                 //validates that the user entered a real option if they didnt the menu is shown again
@@ -48,7 +48,7 @@ public class RunTime
         //outputs the value corresponding to the menu chosen by the user
         return chosenMenu;
     }
-
+    
     public void registrationMenu()
     {
         // creates a custom Dialog to accsept 
@@ -59,7 +59,7 @@ public class RunTime
         JTextField nameField = new JTextField("Enter a name");
         JTextField lastNameField = new JTextField("Enter a surname");
         String message = "Please enter your name, surname, username and password.";
-
+        
         result = JOptionPane.showOptionDialog(frame, new Object[]
         {
             message, nameField, lastNameField, userField, passField
@@ -71,11 +71,11 @@ public class RunTime
             registeration.setUserName(userField.getText());
             registeration.setPassword(passField.getText());
         }
-
+        
         while (!registeration.registerUser().equals("Username and Password successfully captured"))
         {
             JOptionPane.showMessageDialog(null, registeration.registerUser());
-
+            
             result = JOptionPane.showOptionDialog(frame, new Object[]
             {
                 message, nameField, lastNameField, userField, passField
@@ -90,16 +90,16 @@ public class RunTime
         }
         JOptionPane.showMessageDialog(null, registeration.registerUser());
     }
-
+    
     public boolean loginMenu()
     {
-
+        
         int result;
         JFrame frame = new JFrame("Login");
         JTextField logUserField = new JTextField("Enter your username");
         JTextField logPassField = new JTextField("Enter your password");
         String message = "Please enter your username and password.";
-
+        
         result = JOptionPane.showOptionDialog(frame, new Object[]
         {
             message, logUserField, logPassField
@@ -114,12 +114,12 @@ public class RunTime
         }
         return false;
     }
-
+    
     public int EasyKanbanMenu()
     {
-
+        
         JOptionPane.showMessageDialog(null, "Welcome to EasyKanban");
-
+        
         int chosenMenu = 0;
         boolean run = true;
         String userInput;
@@ -141,7 +141,7 @@ public class RunTime
                 //assigns the menu selected by the user to the methods output
                 chosenMenu = Integer.parseInt(userInput);
             }
-
+            
             if ((chosenMenu < 1) || (chosenMenu > 3))
             {
                 //validates that the user entered a real option if they didnt the menu is shown again
@@ -155,9 +155,9 @@ public class RunTime
             }
         }
         return chosenMenu;
-
+        
     }
-
+    
     public void addTaskSubMenu()
     {
         int numOfTasks = Integer.parseInt(JOptionPane.showInputDialog(null, "Please enter the number of tasks you wish to create."));
@@ -171,7 +171,7 @@ public class RunTime
         for (int i = 0; i < numOfTasks; i++)
         {
             taskArray[i] = new Task();
-
+            
             int result;
             boolean inputsAreValid = false;
             while (!inputsAreValid)
@@ -188,12 +188,13 @@ public class RunTime
                 {
                     message, taskName, taskDesc, devDets, taskDuration, statusSelect
                 }, "Add Task", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-
+                
                 if (result == JOptionPane.OK_OPTION)
                 {
                     // VALIDATION AND ASSIGNMENT
                     taskArray[i].setTaskName(taskName.getText());
                     taskArray[i].setDevDetails(devDets.getText());
+                    taskArray[i].setTaskStatus((String) statusSelect.getSelectedItem());
                     // checks length less than or equal to 50 and if a number was entered for duration
                     inputsAreValid = (taskArray[i].setTaskDuration(taskDuration.getText()) && taskArray[i].checkTaskDescription(taskDesc.getText()));
                     if (!taskArray[i].setTaskDuration(taskDuration.getText()))
@@ -203,7 +204,7 @@ public class RunTime
                     {
                         totalHours = Task.returnTotalHours(taskArray[i].getTaskDuration());
                     }
-
+                    
                     if (!taskArray[i].checkTaskDescription(taskDesc.getText()))
                     {
                         JOptionPane.showMessageDialog(null, "Please enter a task description of less than 50 characters");
@@ -217,13 +218,14 @@ public class RunTime
             JOptionPane.showMessageDialog(null, taskArray[i].printTaskDetails());
         }
         JOptionPane.showMessageDialog(null, "the total duration of all tasks is: " + totalHours);
+        EasyKanbanMenu();
     }
-
+    
     public void showReportSubMenu()
     {
         JOptionPane.showMessageDialog(null, "Coming Soon");
     }
-
+    
     public void menuSwitcher(int selectedmenu)
     {
         switch (selectedmenu)
