@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  *
  * @author mfren
  */
-public class TestTask
+public class testTask
 {
 
     // TODO add test methods here.
