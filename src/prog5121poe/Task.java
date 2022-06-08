@@ -21,7 +21,16 @@ public class Task
     private double taskDuration;
     private String ID;
     private String taskStatus;
-    
+
+    public String getTaskStatus()
+    {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(String taskStatus)
+    {
+        this.taskStatus = taskStatus;
+    }
 
     public Task()
     {
@@ -55,9 +64,10 @@ public class Task
         {
             this.taskDescription = taskDescription;
             return "Task successfully captured";
-        }
-        else
+        } else
+        {
             return "Please enter a task description of less than 50 characters";
+        }
     }
 
     public String getDevDetails()
@@ -77,9 +87,16 @@ public class Task
         return taskDuration;
     }
 
-    public void setTaskDuration(double taskDuration)
+    public boolean setTaskDuration(String taskDuration)
     {
-        this.taskDuration = taskDuration;
+        try
+        {
+            this.taskDuration = Double.parseDouble(taskDuration);
+        } catch (NumberFormatException ex)
+        {
+            return false;
+        }
+        return true;
     }
 
     public String getID()
@@ -87,18 +104,47 @@ public class Task
         return ID;
     }
 
-    
-    
-    /* first two letters of the Task
-    Name, a colon (:), the Task Number, a colon (:)
-    and the last three letters of the developer
-    assigned to the task’s name. The ID should be
-    displayed in all caps:
-    AD:0:INA*/
-    
+    public boolean checkTaskDescription(String taskDesc)
+    {
+        if (taskDescription.length() <= 50)
+        {
+            this.taskDescription = taskDesc;
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    /*
+    return "Task successfully captured";
+        }
+        else
+            return "Please enter a task description of less than 50 characters"; 
+     */
     public void createtaskID()
     {
-        this.ID = "a bunch of string manipulation" ;
+        int nameLength = devDetails.length();
+        String theID = this.taskName.substring(0, 2) + ":" + this.taskNumber + ":" + this.devDetails.substring(nameLength - 3, nameLength);
+        this.ID = theID.toUpperCase();
+    }
+
+    public String printTaskDetails()
+    {
+        return "taskName: " + taskName + "\n"
+                + "taskNumber: " + taskNumber + "\n"
+                + "taskDescription: " + taskDescription + "\n"
+                + "devDetails: " + devDetails + "\n"
+                + "taskDuration: " + taskDuration + "\n"
+                + ", ID: " + ID + "\n"
+                + ", taskStatus: " + taskStatus;
+    }
+
+    public static double returnTotalHours(double duration)
+    {
+        double total = 0;
+        total += duration;
+        return total;
     }
 
 }

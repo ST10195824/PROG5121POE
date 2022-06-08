@@ -13,15 +13,27 @@ public class PROG5121POE
         //instantiates the menu system
         RunTime worker = new RunTime();
         boolean run = true;
+        int selectedEasyKanbanMenu;
         while (run)
         {
             //assigns the selected submenu to the input of the submenu method
-            int chosenSubMenu = worker.mainMenu();
-            if (chosenSubMenu == 3)
+            int chosenSubMenu = worker.entranceHallMenu();
+            switch (chosenSubMenu)
             {
-                System.exit(0);
+                case 1 -> worker.registrationMenu();
+                case 2 ->
+                {
+                    boolean userLogin = worker.loginMenu();
+                    if (userLogin)
+                    {
+                        selectedEasyKanbanMenu = worker.EasyKanbanMenu();
+                        worker.menuSwitcher(selectedEasyKanbanMenu);
+                    }
+                }
+                case 3 -> System.exit(0);
+
             }
-            worker.subMenu(chosenSubMenu);
+            
         }
 
     }
