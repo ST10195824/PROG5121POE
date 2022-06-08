@@ -8,11 +8,11 @@ package prog5121poe;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Task
+public final class Task
 {
 
     private static final AtomicInteger aggregator = new AtomicInteger();
-
+    private static double total = 0;
     //fields for task object
     private String taskName;
     private final int taskNumber;
@@ -21,6 +21,22 @@ public class Task
     private double taskDuration;
     private String ID;
     private String taskStatus;
+
+    public Task()
+    {
+        taskNumber = aggregator.incrementAndGet() -1;
+    }
+
+    public Task(String taskName, String taskDescript, String devDetails, double taskDuration, String taskStatus)
+    {
+        this.taskName = taskName;
+        this.taskDescription = taskDescript;
+        this.devDetails = devDetails;
+        this.taskDuration = taskDuration;
+        this.taskStatus = taskStatus;
+        this.taskNumber = aggregator.incrementAndGet() -1;
+        createtaskID();
+    }
 
     public String getTaskStatus()
     {
@@ -32,11 +48,7 @@ public class Task
         this.taskStatus = taskStatus;
     }
 
-    public Task()
-    {
-        //this might fuck shit up later
-        taskNumber = aggregator.incrementAndGet();
-    }
+   
 
     public String getTaskName()
     {
@@ -115,13 +127,7 @@ public class Task
             return false;
         }
     }
-
-    /*
-    return "Task successfully captured";
-        }
-        else
-            return "Please enter a task description of less than 50 characters"; 
-     */
+    
     public void createtaskID()
     {
         int nameLength = devDetails.length();
@@ -142,7 +148,6 @@ public class Task
 
     public static double returnTotalHours(double duration)
     {
-        double total = 0;
         total += duration;
         return total;
     }
