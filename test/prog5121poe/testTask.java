@@ -12,11 +12,7 @@ import static org.junit.Assert.*;
 public class testTask
 {
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    // defined object array for testing
     public static final Task[] taskArr =
     {
         new Task("Create Add Task feature to add task users", "Create Login to authenticate users", "Robyn Harrison", 10, "To Do"),
@@ -25,7 +21,7 @@ public class testTask
         new Task("Create Add Task feature to add task users", "Create Login to authenticate users", "Mike Smith", 11, "Doing"),
         new Task("Create Add Task feature to add task users", "Create Login to authenticate users", "Robyn Harrison", 1, "To Do")
     };
-
+// array of expected ID's
     public static final String[] ArrID =
     {
         "CR:0:SON",
@@ -38,6 +34,7 @@ public class testTask
     @Test
     public void testCorrectSetTaskDescription()
     {
+        //verifying the correct output messages
         Task testTask;
         testTask = new Task("Login Feature", "", "Robyn Harrison", 8, "To Do");
         String result = testTask.setTaskDescription("Create Login to authenticate users");
@@ -71,6 +68,7 @@ public class testTask
     @Test
     public void testcreatetaskID()
     {
+        //compares the array of accurate ID's to the ones generated via the createID method in the objects constructor
         for (int i = 0; i < taskArr.length; i++)
         {
             assertEquals(ArrID[i], taskArr[i].getID());
@@ -82,6 +80,7 @@ public class testTask
     @Test
     public void testReturnTotalHours()
     {
+        //verifies the accurate addition of the total hours
         double result = 0;
         double expectedResult = 89.0;
         for (int i = 0; i < taskArr.length; i++)
