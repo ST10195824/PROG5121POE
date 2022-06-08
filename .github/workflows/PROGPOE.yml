@@ -46,7 +46,7 @@ jobs:
       
         #copy compiled tests 
       - name : copy compiled Test classes to testresources directory 
-        working-directory: ./test/poe_task2
+        working-directory: ./test/prog5121poe
         run: cp -t  "../../testresources/" LoginTest.class
         
         # list contents or directory
