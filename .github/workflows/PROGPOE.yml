@@ -42,12 +42,12 @@ jobs:
        # copy compiled classes to test directory 
       - name : copy compiled classes to testresources directory 
         working-directory: ./src/prog5121poe
-        run: cp -t  "../../test/prog5121poe" Login.class
+        run: cp -t  "../../test/prog5121poe" LogIn.class
       
         #copy compiled tests 
       - name : copy compiled Test classes to testresources directory 
         working-directory: ./test/prog5121poe
-        run: cp -t  "../../testresources/" LoginTest.class
+        run: cp -t  "../../testresources/" TestLogIn.class
         
         # list contents or directory
       - name: List contents test package
