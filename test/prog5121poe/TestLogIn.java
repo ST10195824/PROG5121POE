@@ -45,6 +45,7 @@ public class TestLogIn
     @Test
     public void testCorrectCheckUsername()
     {
+        //tests if the correct username was entered
         LogIn instance = new LogIn();
         instance.setUserName("kyl_1");
        
@@ -55,6 +56,7 @@ public class TestLogIn
     @Test
      public void testIncorrectCheckUsername()
     {
+        //tests if the incorrect username was entered
         LogIn instance = new LogIn();
         instance.setUserName("kyle!!!!!!!");
        
