@@ -3,6 +3,7 @@
 package prog5121poe;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class RunTime
 {
@@ -166,13 +167,15 @@ public class RunTime
         {
             "To Do", "Done", "Doing"
         };
-        Task[] taskArray = new Task[numOfTasks];
+        //Task[] taskArray = new Task[numOfTasks];
+        ArrayList<Task> taskArr = new ArrayList<Task>();
         double totalHours = 0;
         //--------- LOOP_TO_COLLECT_TASK_INFO-----------------//
+        
         for (int i = 0; i < numOfTasks; i++)
         {
             //declaration of task object array
-            taskArray[i] = new Task();
+            taskArr.add(i, new Task());
             int result;
             boolean inputsAreValid = false;
             while (!inputsAreValid)
@@ -195,25 +198,25 @@ public class RunTime
                 if (result == JOptionPane.OK_OPTION)
                 {
                     // VALIDATION AND ASSIGNMENT
-                    taskArray[i].setTaskName(taskName.getText());
-                    taskArray[i].setDevDetails(devDets.getText());
-                    taskArray[i].setTaskStatus((String) statusSelect.getSelectedItem());
+                    taskArr.get(i).setTaskName(taskName.getText());
+                    taskArr.get(i).setDevDetails(devDets.getText());
+                    taskArr.get(i).setTaskStatus((String) statusSelect.getSelectedItem());
                     // checks length less than or equal to 50 and if a number was entered for duration
-                    inputsAreValid = (taskArray[i].setTaskDuration(taskDuration.getText()) && taskArray[i].checkTaskDescription(taskDesc.getText()));
-                    if (!taskArray[i].setTaskDuration(taskDuration.getText()))
+                    inputsAreValid = (taskArr.get(i).setTaskDuration(taskDuration.getText()) && taskArr.get(i).checkTaskDescription(taskDesc.getText()));
+                    if (!taskArr.get(i).setTaskDuration(taskDuration.getText()))
                     {
                         JOptionPane.showMessageDialog(null, "please enter a number value for task duration");
                     } else
                     {
-                        totalHours = Task.returnTotalHours(taskArray[i].getTaskDuration());
+                        totalHours = Task.returnTotalHours(taskArr.get(i).getTaskDuration());
                         //messages user based on wther the task desription is a valid length
-                        JOptionPane.showMessageDialog(null, taskArray[i].setTaskDescription(taskDesc.getText()));
-                        taskArray[i].createtaskID();
+                        JOptionPane.showMessageDialog(null, taskArr.get(i).setTaskDescription(taskDesc.getText()));
+                        taskArr.get(i).createtaskID();
                     }
 
                 }
             }
-            JOptionPane.showMessageDialog(null, taskArray[i].printTaskDetails());
+            JOptionPane.showMessageDialog(null, taskArr.get(i).printTaskDetails());
         }
         JOptionPane.showMessageDialog(null, "the total duration of all tasks is: " + totalHours);
         //returns the user to the EasyKanban menu instead of the enterance hall menu
@@ -239,4 +242,8 @@ public class RunTime
                 entranceHallMenu();
         }
     }
+    
+    
+    
+    
 }
